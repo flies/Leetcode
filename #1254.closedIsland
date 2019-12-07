@@ -1,0 +1,31 @@
+class Solution{
+public:
+    void subIsland(int i,int j,vector<vector<int>> &temp,int& flag){
+        if(i<0||i>=temp.size()||j<0||j>=temp[0].size()) {flag=0;return ;}
+        if(temp[i][j]!=0)return ;
+        temp[i][j]=1;
+        subIsland(i-1,j,temp,flag);
+        subIsland(1+i,j,temp,flag);
+        subIsland(i,1+j,temp,flag);
+        subIsland(i,j-1,temp,flag);
+        return ;
+    } 
+    int closedIsland(vector<vector<int>>& grid) {
+        int u,v;
+        auto temp=grid;
+        int count=0;
+        u=grid.size();
+        v=grid[0].size();
+        if(u<3||v<3) return 0;
+        for(int i=1;i<u-1;i++){
+            for(int j=1;j<v-1;j++){
+                if(temp[i][j]==0){
+                  int flag=1;
+                  subIsland(i,j,temp,flag);
+                  count=flag+count;
+                }
+            }
+        }
+        return count;
+    }
+};
