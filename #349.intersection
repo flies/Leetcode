@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> ans;
+        if(nums1.size()<=nums2.size()){
+            for(auto it=nums1.begin();it<nums1.end();it++){
+                auto result1=find(nums2.begin(),nums2.end(),*it);
+                auto result2=find(ans.begin(),ans.end(),*it);
+                if(result1==nums2.end()||result2!=ans.end()) continue;
+                else ans.push_back(*it);
+            }
+        }
+        else{
+            for(auto it=nums2.begin();it<nums2.end();it++){
+                auto result1=find(nums1.begin(),nums1.end(),*it);
+                auto result2=find(ans.begin(),ans.end(),*it);
+                if(result1==nums1.end()||result2!=ans.end()) continue;
+                else ans.push_back(*it);
+            }
+        }
+        return ans;
+    }
+};
