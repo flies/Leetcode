@@ -1,0 +1,23 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
+      if(nums.size()==0) return NULL;
+      return subTree(nums.begin(),nums.end());
+    }
+    TreeNode* subTree(vector<int>::iterator l, vector<int>::iterator r){
+        auto it=max_element(l,r);
+        TreeNode *tn=new TreeNode(*it);
+        if(it!=l) tn->left=subTree(l,it);
+        if(it!=r-1) tn->right=subTree(it+1,r);
+        return tn;
+    }
+};
