@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        vector<int> ans;
+        if (k == 0) return ans;
+        if(k==arr.size()) return arr;
+        int temp = abs(arr[0] - x);
+        auto i=arr.begin();;
+        for (auto it = arr.begin() + 1; it < arr.end(); it++) {
+            if (temp > abs(*it - x)) {
+                temp = abs(*it - x);
+                i = it;
+            }
+        }
+        auto m = i;
+        auto n = i;
+        while (n - m < k) {
+            if (m == arr.begin())  {n= m + k ;break;}
+            else if (n == arr.end() - 1) {m = n - k ;break;}
+            else if (abs(*m - x)-0.5 < abs(*n - x)) m--;
+            else if (abs(*m - x)-0.5> abs(*n - x)) n++;
+        }
+        if(abs(*n-x)<abs(*m-x)-0.5) m=m+1;
+        for (int p=0;p<k;m++,p++){
+            ans.push_back(*m);
+        }
+        return ans;
+    }
+};
