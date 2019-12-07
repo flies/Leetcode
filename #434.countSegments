@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int countSegments(string s) {
+        if (s.size()==0) return 0;
+        int flag=0;
+        s=s+' ';
+        for(auto it=s.begin()+1;it<s.end();it++){
+            if (*(it-1)!=' '&&*(it)==' ') flag++;
+        }
+        return flag;
+    }
+};
