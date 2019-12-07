@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> ans;
+        for(auto i=nums.begin();i<nums.end()-1;i++){
+            int temp=target-*i;
+            auto d=find(i+1,nums.end(),temp);
+            if(d!=nums.end()){
+                ans.push_back(distance(nums.begin(), i));
+                ans.push_back(distance(nums.begin(), d));
+                break;
+            }
+        }
+        return ans;
+    }
+};
